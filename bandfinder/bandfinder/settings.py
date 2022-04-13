@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-kq91=3^p7w$cqo!2!2d1jhck+99x550g-dw^b#r_=h7wh*va8n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -119,7 +120,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
+
+# kind of like templates need Django to know we have static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+
+]
+# Tells Django where to upload user generated content
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images') #defines where user uploaded content goes
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #ddefines where our static files in production is going to be 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

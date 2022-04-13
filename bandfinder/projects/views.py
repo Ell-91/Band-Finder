@@ -20,7 +20,7 @@ def createProject(request):
     #projects page
     if request.method == 'POST':
         print(request.POST)
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('projects')
@@ -35,7 +35,7 @@ def updateProject(request, pk):
     #once a form is sucessfully submitted we want to redirect and send them to the
     #projects page
     if request.method == 'POST':
-        form = ProjectForm(request.POST, instance = project)
+        form = ProjectForm(request.POST, request.FILES, instance = project)
         if form.is_valid():
             form.save()
             return redirect('projects')
