@@ -2,16 +2,6 @@
 
 {% block content %}
 
-<!-- fratured_image is what we called the attribute in out model -->
-
-
-
-{% for tag in project.tags.all %}
-    <span style= "border:1px solid grey">{{tag}}</span>
-{% endfor %}
-<hr>
-
-
 <!-- Main Section -->
 <main class="singleProject my-md">
     <div class="container">
@@ -23,14 +13,16 @@
 
             {% for tag in project.tags.all %}
             <span class="tag tag--pill tag--sub tag--lg">
-              <small>Figma</small>
+              <small>{{tag}}</small>
             </span>
             {% endfor %}
            
             
           </div>
+          {% if project.source_link %}
           <a class="singleProject__liveLink" href="#" target="_blank"><i class="im im-external-link"></i>Source Code
           </a>
+          {% endif %}
         </div>
         <div class="column column--2of3">
           <img class="singleProject__preview" src="{{ project.featured_image.url}}"  alt="portfolio thumbnail" />
